@@ -174,3 +174,5 @@ dist
 *env
 *.env
 *cache*
+.calude/
+CLAUDE.md 
