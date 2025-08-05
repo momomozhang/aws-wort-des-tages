@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   AWS Wort des Tages - Daily German vocabulary email service
@@ -16,9 +16,9 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: lambda_function.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.10+
       Architectures:
-      - x86_64
+        - x86_64
       Policies:
         - SESCrudPolicy:
             IdentityName: "*"
@@ -26,7 +26,7 @@ Resources:
         DailySchedule:
           Type: Schedule
           Properties:
-            Schedule: cron(0 8 * * ? *)  # Daily at 8 AM UTC
+            Schedule: cron(0 8 * * ? *) # Daily at 8 AM UTC
             Description: "Daily German word email trigger"
 
 Outputs:
