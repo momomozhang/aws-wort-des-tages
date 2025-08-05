@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS Wort des Tages - Daily German vocabulary email service
+
+Globals:
+  Function:
+    Timeout: 30
+    Tracing: Active
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  SendSesEmailFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Architectures:
+      - x86_64
+      Policies:
+        - SESCrudPolicy:
+            IdentityName: "*"
+      Events:
+        DailySchedule:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 8 * * ? *)  # Daily at 8 AM UTC
+            Description: "Daily German word email trigger"
+
+Outputs:
+  SendSesEmailFunction:
+    Description: German Word Email Lambda Function ARN
+    Value: !GetAtt SendSesEmailFunction.Arn
+  SendSesEmailFunctionIamRole:
+    Description: Implicit IAM Role created for German Word Email function
+    Value: !GetAtt SendSesEmailFunctionRole.Arn
