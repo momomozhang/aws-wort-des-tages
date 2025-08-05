@@ -25,3 +25,8 @@ Progress:
 - AWS setup -> done
 - decision made: python + AWS SDK
 - SAM configuration -> done
+- basic lamdba_function.py -> done
+- sam build & deploy -> done, now lambda function is live on AWS
+
+next step:
+- download Docker Desktop from docker.com then run `sam local invoke SendSesEmailFunction`
