@@ -11,19 +11,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "aws-wort-des-tages"
 authors = [{ name = "Mengni Zhang", email = "monicamengni@gmail.com" }]
-description = "My package description"
+description = "A serverless German vocabulary app that picks a fresh word each day, gets Generative AI to write example sentences, and emails it to subscribers."
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = ["one", "two"]
-license = {text = "MIT"}
+keywords = ["German", "vocabulary", "learn German"]
+license = { text = "MIT" }
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13"
+    "Programming Language :: Python :: 3.13",
 ]
-dependencies = ["numpy", 'importlib-metadata; python_version<"3.12"']
+dependencies = ["boto3", 'importlib-metadata; python_version<"3.12"']
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -69,7 +69,6 @@ unfixable = ["B"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402"]
-"path/to/file.py" = ["E402"]
 
 [tool.pylint."messages control"]
 disable = [
